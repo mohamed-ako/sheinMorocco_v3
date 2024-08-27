@@ -96,14 +96,12 @@ const EditProductForm = () => {
           name="name"
           value={formData.name}
           onChange={handleChange}
-          required
         />
         <label>Description:</label>
         <textarea
           name="description"
           value={formData.description}
           onChange={handleChange}
-          required
         />
         <label>Category:</label>
         <input
@@ -111,7 +109,6 @@ const EditProductForm = () => {
           name="category"
           value={formData.category}
           onChange={handleChange}
-          required
         />
         <label>Price:</label>
         <input
@@ -119,7 +116,6 @@ const EditProductForm = () => {
           name="price"
           value={formData.price}
           onChange={handleChange}
-          required
         />
         <label>Quantity:</label>
         <input
@@ -127,7 +123,6 @@ const EditProductForm = () => {
           name="quantity"
           value={formData.quantity}
           onChange={handleChange}
-          required
         />
         <label>First Image URL:</label>
         <input
@@ -135,7 +130,6 @@ const EditProductForm = () => {
           name="theImage"
           value={formData.theImage}
           onChange={handleChange}
-          required
         />
         <label>Images URL:</label>
         {formData.images.map((image, index) => (
@@ -145,7 +139,6 @@ const EditProductForm = () => {
               name={`image_${index}`}
               value={image}
               onChange={(e) => handleImageChange(e, index)}
-              required
             />
             <button type="button" onClick={() => handleRemoveImageInput(index)}>
               Remove
@@ -161,7 +154,6 @@ const EditProductForm = () => {
           name="video"
           value={formData.video}
           onChange={handleChange}
-          required
         />
         <button type="submit">Edit Product</button>
       </form>

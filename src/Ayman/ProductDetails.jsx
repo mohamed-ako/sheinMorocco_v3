@@ -2,20 +2,20 @@ import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import ProductActions from "./ProductActions";
 import { useSelector } from "react-redux";
-// import { selectAllProducts } from "./redux/Slice";
+
 const ProductDetails = () => {
   const { id } = useParams();
-  const product = useSelector((state) => state.products.products).find(
-    (e) => e._id === id
-  );
+  const product = useSelector((state) => state.products.products).find((e) => e._id === id);
+  
   const [activeImage, setActiveImage] = useState(null);
 
   const handleImageClick = (index) => {
     setActiveImage(index);
     setTimeout(() => {
       setActiveImage(null);
-    }, 3000); // Remove the active class after 3 seconds
+    }, 3000);
   };
+
   console.log(
     "--------------------------------\n" +
       JSON.stringify(product) +
@@ -27,25 +27,31 @@ const ProductDetails = () => {
       {product ? (
         <div>
           <div className="media">
-            <video controls>
-              <source src={`${product.video}`} type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
+            {product.video && product.video !== "0" && (
+              <video controls>
+                <source src={`${product.video}`} type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+            )}
             <img
               src={`${product.theImage}`}
               alt="Main Product"
               className={activeImage === 999 ? "active" : ""}
               onClick={() => handleImageClick(999)}
             />
-            {product.images.map((image, index) => (
-              <img
-                key={index.toString()}
-                src={`${image}`}
-                alt={`Product ${index}`}
-                className={activeImage === index ? "active" : ""}
-                onClick={() => handleImageClick(index)}
-              />
-            ))}
+            {product.images ?(
+              product.images.map((image, index) => (
+                <img
+                  key={index.toString()}
+                  src={`${image}`}
+                  alt={`Product ${index}`}
+                  className={activeImage === index ? "active" : ""}
+                  onClick={() => handleImageClick(index)}
+                />
+              ))
+            ) : (
+              <p>No additional images available</p>
+            )}
           </div>
           <div>
             <h2 className="heading">{product.name}</h2>

@@ -1,5 +1,5 @@
 
-import Index from './Ayman/index';
+import Index from './Ayman/Home';
 
 const App = () => {
   return <Index />;
